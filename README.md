@@ -7,6 +7,7 @@ Gazebo multi-robot simulator, version 11.9.0
 Follow the Jackal tutorial [Simulating Jackal](https://www.clearpathrobotics.com/assets/guides/melodic/jackal/simulation.html)
 ## Second
 After setting up ROS and Gazebo, run the simulated Jackal in the customize world simulator.world by running:
-'''bash
+```bash
 roslaunch jackal_gazebo simulator.launch
-'''
+```
+
