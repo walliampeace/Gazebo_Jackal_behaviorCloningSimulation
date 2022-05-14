@@ -1,0 +1,1 @@
+This directory contains the customize Jackal model with Intel RealSense camera mounted
