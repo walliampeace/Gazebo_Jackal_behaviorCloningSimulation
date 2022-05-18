@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# license removed for brevity
 
 import rospy,tf
 
@@ -38,19 +37,40 @@ def move(client, x, y, th):
         # return client.get_result()
         pass
 
+# def readTxt(filename):
+#     with open(filename,'r') as f:
+#         # SKIP THE FIRST LINE
+#         next(f)
+#         lines = f.readlines()
+#         for line in lines:
+#             data = line.split()
+#             x = data[0]
+#             y = data[1]
+#             radian = data[2]
+#     f.close()
+#     return x,y,radian
 
 def movebase_client():
     # Create an action client called "move_base" with action definition file "MoveBaseAction"
     client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     client.wait_for_server()
-    # Move robot by sending x,y,radians
-    move(client,-5, 0, 3.14)
-    move(client, -10, 8, 3.14)
-    move(client, -12, 12, 1.57)
-    move(client, -15, 15, 3.14)
+    filename = 'map.txt'
+    # reading the x,y,radians data from a customized file
+    with open(filename,'r') as f:
+        # SKIP THE FIRST LINE
+        next(f)
+        lines = f.readlines()
+        for line in lines:
+            data = line.split()
+            x = data[0]
+            y = data[1]
+            radian = data[2]
+            # Move robot by sending x,y,radians
+            move(client, x, y, radian)
+    f.close()
 
 
-    # If the python node is executed as main process (sourced directly)
+
 if __name__ == '__main__':
     try:
         # Initializes a rospy node to let the SimpleActionClient publish and subscribe
